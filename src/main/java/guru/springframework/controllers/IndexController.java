@@ -1,6 +1,7 @@
 package guru.springframework.controllers;
 
 import guru.springframework.domain.Category;
+import guru.springframework.domain.UnitOfMeasure;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,13 @@ public class IndexController {
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(){
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("America");
 
-        System.out.println("Cat id is: " + categoryOptional.get().getId());
+        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
+        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+
+        System.out.println("Cat Id is: " + categoryOptional.get().getId());
+        System.out.println("UOM ID is: " + unitOfMeasureOptional.get().getId());
+
         return "index";
     }
 }
